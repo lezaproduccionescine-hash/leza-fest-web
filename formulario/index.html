@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101010">
+    <title>Inscripción de cortometrajes | Leza Fest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="brand">LEZA <span>FEST</span></div>
+        <p>FESTIVAL DE CINE</p>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <span class="tag">INSCRIPCIONES</span>
+            <h1>Presentá tu <span>cortometraje</span></h1>
+            <p>Completá los datos para participar de Leza Fest.</p>
+        </section>
+
+        <form id="formulario">
+
+            <section class="form-section">
+                <h2>01. Datos del participante</h2>
+
+                <div class="field">
+                    <label for="participante">Nombre y apellido *</label>
+                    <input id="participante" name="participante"
+                           autocomplete="name" maxlength="150" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Correo electrónico *</label>
+                    <input id="email" name="email" type="email"
+                           autocomplete="email" maxlength="254" required>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>02. Información del cortometraje</h2>
+
+                <div class="field">
+                    <label for="titulo">Nombre del cortometraje *</label>
+                    <input id="titulo" name="titulo"
+                           maxlength="200" required>
+                </div>
+
+                <div class="field">
+                    <label for="genero">Género del cortometraje *</label>
+                    <select id="genero" name="genero" required>
+                        <option value="">Seleccionar género</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Comedia">Comedia</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Suspenso">Suspenso</option>
+                        <option value="Acción">Acción</option>
+                        <option value="Ciencia ficción">Ciencia ficción</option>
+                        <option value="Documental">Documental</option>
+                        <option value="Animación">Animación</option>
+                        <option value="Experimental">Experimental</option>
+                        <option value="Romance">Romance</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>¿El cortometraje es público? *</label>
+                    <div class="radio-options">
+                        <label class="radio-card">
+                            <input type="radio" name="publico"
+                                   value="Sí" required>
+                            Sí, es público
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="publico"
+                                   value="No" required>
+                            No es público
+                        </label>
+                    </div>
+                </div>
+
+                <div id="datos-publicos" class="conditional" hidden>
+                    <div class="field">
+                        <label for="plataforma">¿Dónde se puede ver? *</label>
+                        <select id="plataforma" name="plataforma">
+                            <option value="">Seleccionar plataforma</option>
+                            <option value="YouTube">YouTube</option>
+                            <option value="Vimeo">Vimeo</option>
+                            <option value="Otra">Otra plataforma</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="enlace-publico">
+                            Enlace para visualizar el cortometraje *
+                        </label>
+                        <input id="enlace-publico" name="enlacePublico"
+                               type="url" placeholder="https://...">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="sinopsis">Sinopsis *</label>
+                    <textarea id="sinopsis" name="sinopsis"
+                              rows="6" maxlength="5000"
+                              placeholder="Contanos de qué trata el cortometraje..."
+                              required></textarea>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>03. Productora</h2>
+
+                <div class="field">
+                    <label>¿Participa una productora? *</label>
+                    <div class="radio-options">
+                        <label class="radio-card">
+                            <input type="radio" name="tieneProductora"
+                                   value="Sí" required>
+                            Sí
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="tieneProductora"
+                                   value="No" required>
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div id="datos-productora" class="conditional" hidden>
+                    <div class="field">
+                        <label for="productora">Nombre de la productora *</label>
+                        <input id="productora" name="productora"
+                               maxlength="200">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>04. Enlace de descarga</h2>
+
+                <p class="help">
+                    Este enlace es obligatorio, aunque el cortometraje
+                    sea público. Debe permitir acceder al archivo para
+                    su evaluación por parte de Leza Fest.
+                </p>
+
+                <div class="field">
+                    <label for="enlace-descarga">
+                        Enlace de descarga del cortometraje *
+                    </label>
+                    <input id="enlace-descarga" name="enlaceDescarga"
+                           type="url" placeholder="https://..." required>
+                </div>
+
+                <div id="estado-enlace" class="status" aria-live="polite">
+                    Se verificará el acceso al archivo antes de aceptar
+                    la inscripción.
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>05. Términos y condiciones</h2>
+
+                <p class="help">
+                    Leé los términos y condiciones de participación
+                    antes de enviar tu inscripción.
+                </p>
+
+                <div class="terms-placeholder">
+                    <p>
+                        Al aceptar los terminos y condiciones, confirmás que el cortometraje presentado es de tu autoría y contás con los derechos necesarios para su exhibición. Además, autorizas a Leza TV a reproducirlo libremente en su plataforma.
+                    </p>
+                </div>
+
+                <label class="terms-check">
+                    <input type="checkbox" id="acepta-terminos"
+                           name="aceptaTerminos" required>
+                    <span>Acepto los términos y condiciones de participación
+                    de Leza Fest. *</span>
+                </label>
+            </section>
+
+            <button type="submit" id="enviar">
+                ENVIAR INSCRIPCIÓN
+            </button>
+
+            <p id="resultado" class="result" role="status"
+               aria-live="polite"></p>
+
+            <p class="required-note">* Campos obligatorios.</p>
+        </form>
+    </main>
+
+    <footer>
+        LEZA PRODUCCIONES · LEZA FEST
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

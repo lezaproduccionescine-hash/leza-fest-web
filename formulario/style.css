@@ -1,0 +1,266 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    background: #101010;
+    color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.header {
+    text-align: center;
+    padding: 35px 20px;
+    border-bottom: 1px solid #292929;
+}
+
+.brand {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.brand span,
+.intro h1 span {
+    color: #d4af37;
+}
+
+.header p {
+    color: #999;
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-top: 8px;
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 55px auto;
+}
+
+.intro {
+    margin-bottom: 40px;
+}
+
+.tag {
+    color: #d4af37;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.intro h1 {
+    font-size: clamp(35px, 6vw, 55px);
+    margin: 15px 0;
+}
+
+.intro p,
+.help {
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.form-section {
+    background: #191919;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.form-section h2 {
+    color: #d4af37;
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: 9px;
+    color: #ddd;
+}
+
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    background: #101010;
+    border: 1px solid #3a3a3a;
+    border-radius: 7px;
+    padding: 14px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #d4af37;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.radio-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.radio-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #101010;
+    border: 1px solid #3a3a3a;
+    border-radius: 7px;
+    padding: 15px;
+    cursor: pointer;
+    flex: 1;
+    min-width: 150px;
+}
+
+.radio-card input,
+.terms-check input {
+    accent-color: #d4af37;
+}
+
+.conditional {
+    background: #141414;
+    border-left: 3px solid #d4af37;
+    padding: 20px;
+    margin: 18px 0;
+    border-radius: 5px;
+}
+
+.help {
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.status {
+    color: #aaa;
+    background: #111;
+    padding: 13px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.status.error {
+    color: #ff7777;
+}
+
+.status.success {
+    color: #d4af37;
+}
+
+.terms-placeholder {
+    padding: 18px;
+    background: #101010;
+    border: 1px solid #383838;
+    border-radius: 7px;
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.terms-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.6;
+    cursor: pointer;
+}
+
+.terms-check input {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+button {
+    width: 100%;
+    background: #d4af37;
+    color: #111;
+    border: none;
+    padding: 18px;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #f0ce59;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.result {
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.required-note {
+    color: #777;
+    font-size: 12px;
+    margin-top: 18px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #292929;
+    color: #777;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .radio-options {
+        flex-direction: column;
+    }
+
+    .radio-card {
+        flex: auto;
+    }
+}
