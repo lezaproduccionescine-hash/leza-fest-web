@@ -1,5 +1,9 @@
+
+const API_BASE =
+    "https://leza-fest-api.lezafest.workers.dev";
+
 const API_URL =
-    "https://leza-fest-api.lezafest.workers.dev/config";
+    API_BASE + "/config";
 
 let configuracionAnterior = null;
 
@@ -18,7 +22,16 @@ function obtenerElementos() {
             document.getElementById("festival-site"),
 
         closedNextEvent:
-            document.getElementById("closed-next-event")
+            document.getElementById("closed-next-event"),
+
+        broadcastStatus:
+            document.getElementById("broadcast-status"),
+
+        broadcastDate:
+            document.getElementById("broadcast-date"),
+
+        broadcastTime:
+            document.getElementById("broadcast-time")
     };
 
 }
@@ -51,9 +64,7 @@ function mostrarFestivalCerrado(config) {
         if (config.nextEventDate) {
 
             elementos.closedNextEvent.textContent =
-                formatearFecha(
-                    config.nextEventDate
-                );
+                formatearFecha(config.nextEventDate);
 
         } else {
 
@@ -90,19 +101,13 @@ function mostrarFestival(config) {
 
 
     const titulo =
-        document.getElementById(
-            "festival-title"
-        );
+        document.getElementById("festival-title");
 
     const estado =
-        document.getElementById(
-            "festival-status"
-        );
+        document.getElementById("festival-status");
 
     const informacion =
-        document.getElementById(
-            "festival-event-info"
-        );
+        document.getElementById("festival-event-info");
 
 
     if (titulo) {
@@ -129,9 +134,57 @@ function mostrarFestival(config) {
             "Edición " +
             config.year +
             " · Emisión: " +
-            formatearFecha(
-                config.emissionDate
-            );
+            formatearFecha(config.emissionDate);
+
+    }
+
+    // ACTUALIZAR INFORMACIÓN DE LEZA TV
+
+    actualizarTransmision(config);
+
+}
+
+
+// ========================================
+// TRANSMISIÓN LEZA TV
+// ========================================
+
+function actualizarTransmision(config) {
+
+    const elementos =
+        obtenerElementos();
+
+    if (elementos.broadcastDate) {
+
+        elementos.broadcastDate.textContent =
+            config.broadcastDate
+                ? formatearFecha(config.broadcastDate)
+                : "Próximamente";
+
+    }
+
+    if (elementos.broadcastTime) {
+
+        elementos.broadcastTime.textContent =
+            config.broadcastTime
+                ? config.broadcastTime + " hs"
+                : "A confirmar";
+
+    }
+
+    if (elementos.broadcastStatus) {
+
+        if (config.broadcastDate && config.broadcastTime) {
+
+            elementos.broadcastStatus.textContent =
+                "La transmisión de Leza Fest por Leza TV está programada.";
+
+        } else {
+
+            elementos.broadcastStatus.textContent =
+                "La fecha y el horario de transmisión serán anunciados próximamente.";
+
+        }
 
     }
 
@@ -195,8 +248,7 @@ async function cargarEstadoFestival() {
         if (!respuesta.ok) {
 
             throw new Error(
-                "HTTP " +
-                respuesta.status
+                "HTTP " + respuesta.status
             );
 
         }
@@ -216,8 +268,7 @@ async function cargarEstadoFestival() {
 
 
         if (
-            configuracionAnterior ===
-            nuevoEstado
+            configuracionAnterior === nuevoEstado
         ) {
 
             return;
@@ -252,6 +303,249 @@ async function cargarEstadoFestival() {
 
 
 // ========================================
+// FORMULARIO DE INSCRIPCIÓN
+// ========================================
+
+function configurarFormulario() {
+
+    const formulario =
+        document.getElementById("registration-form");
+
+    const mensaje =
+        document.getElementById("registration-message");
+
+    const boton =
+        document.getElementById("registration-submit");
+
+    const productora =
+        document.getElementById("productora");
+
+    const nombreProductora =
+        document.getElementById("nombre_productora");
+
+    const grupoProductora =
+        document.getElementById("producer-name-group");
+
+
+    if (!formulario) {
+        return;
+    }
+
+
+    // MOSTRAR U OCULTAR NOMBRE DE PRODUCTORA
+
+    function actualizarCampoProductora() {
+
+        if (!productora ||
+            !nombreProductora ||
+            !grupoProductora) {
+
+            return;
+        }
+
+        const tieneProductora =
+            productora.value === "Sí";
+
+        grupoProductora.style.display =
+            tieneProductora ? "block" : "none";
+
+        nombreProductora.required =
+            tieneProductora;
+
+        if (!tieneProductora) {
+            nombreProductora.value = "";
+        }
+
+    }
+
+
+    if (productora) {
+
+        productora.addEventListener(
+            "change",
+            actualizarCampoProductora
+        );
+
+        actualizarCampoProductora();
+
+    }
+
+
+    // MOSTRAR MENSAJES
+
+    function mostrarMensaje(texto, tipo) {
+
+        if (!mensaje) return;
+
+        mensaje.textContent = texto;
+        mensaje.className =
+            "registration-message " + tipo;
+
+        mensaje.style.display = "block";
+
+    }
+
+
+    // ENVIAR INSCRIPCIÓN
+
+    formulario.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+
+            if (!formulario.reportValidity()) {
+                return;
+            }
+
+
+            const datos = {
+
+                participante:
+                    formulario.elements.participante.value.trim(),
+
+                email:
+                    formulario.elements.email.value.trim(),
+
+                titulo:
+                    formulario.elements.titulo.value.trim(),
+
+                genero:
+                    formulario.elements.genero.value,
+
+                estreno_publico:
+                    formulario.elements.estreno_publico.value,
+
+                plataforma:
+                    formulario.elements.plataforma.value.trim(),
+
+                enlace_publico:
+                    formulario.elements.enlace_publico.value.trim(),
+
+                sinopsis:
+                    formulario.elements.sinopsis.value.trim(),
+
+                productora:
+                    formulario.elements.productora.value,
+
+                nombre_productora:
+                    formulario.elements.nombre_productora.value.trim(),
+
+                enlace_descarga:
+                    formulario.elements.enlace_descarga.value.trim()
+
+            };
+
+
+            if (boton) {
+
+                boton.disabled = true;
+                boton.textContent = "ENVIANDO...";
+
+            }
+
+
+            mostrarMensaje(
+                "Estamos enviando tu inscripción...",
+                "info"
+            );
+
+
+            try {
+
+                const respuesta =
+                    await fetch(
+                        API_BASE + "/inscripciones",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify(datos)
+                        }
+                    );
+
+
+                let resultado = {};
+
+                try {
+
+                    resultado = await respuesta.json();
+
+                } catch {
+
+                    resultado = {};
+
+                }
+
+
+                if (
+                    !respuesta.ok ||
+                    resultado.success === false
+                ) {
+
+                    throw new Error(
+                        resultado.error ||
+                        resultado.message ||
+                        "No se pudo registrar la inscripción."
+                    );
+
+                }
+
+
+                formulario.reset();
+
+                actualizarCampoProductora();
+
+
+                mostrarMensaje(
+                    "¡Tu cortometraje fue inscripto correctamente en Leza Fest!",
+                    "success"
+                );
+
+
+                console.log(
+                    "Inscripción registrada:",
+                    resultado
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error al enviar inscripción:",
+                    error
+                );
+
+
+                mostrarMensaje(
+                    error.message ||
+                    "No se pudo enviar la inscripción. Intentá nuevamente.",
+                    "error"
+                );
+
+
+            } finally {
+
+                if (boton) {
+
+                    boton.disabled = false;
+                    boton.textContent = "ENVIAR INSCRIPCIÓN";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+// ========================================
 // NAVEGACIÓN
 // ========================================
 
@@ -277,9 +571,7 @@ function configurarNavegacion() {
                     }
 
                     const target =
-                        document.querySelector(
-                            targetId
-                        );
+                        document.querySelector(targetId);
 
                     if (!target) {
                         return;
@@ -308,9 +600,7 @@ function configurarNavegacion() {
 function configurarNavbar() {
 
     const navbar =
-        document.querySelector(
-            ".navbar"
-        );
+        document.querySelector(".navbar");
 
     if (!navbar) {
         return;
@@ -322,15 +612,11 @@ function configurarNavbar() {
 
             if (window.scrollY > 50) {
 
-                navbar.classList.add(
-                    "scrolled"
-                );
+                navbar.classList.add("scrolled");
 
             } else {
 
-                navbar.classList.remove(
-                    "scrolled"
-                );
+                navbar.classList.remove("scrolled");
 
             }
 
@@ -351,20 +637,13 @@ function configurarAnimaciones() {
             ".section-title, .festival-content, .rule, .registration-content"
         );
 
-    if (
-        !("IntersectionObserver" in window)
-    ) {
+    if (!("IntersectionObserver" in window)) {
 
         elementos.forEach(
             function (elemento) {
 
-                elemento.classList.add(
-                    "fade-in"
-                );
-
-                elemento.classList.add(
-                    "visible"
-                );
+                elemento.classList.add("fade-in");
+                elemento.classList.add("visible");
 
             }
         );
@@ -380,17 +659,10 @@ function configurarAnimaciones() {
                 entradas.forEach(
                     function (entrada) {
 
-                        if (
-                            entrada.isIntersecting
-                        ) {
+                        if (entrada.isIntersecting) {
 
-                            entrada.target.classList.add(
-                                "fade-in"
-                            );
-
-                            entrada.target.classList.add(
-                                "visible"
-                            );
+                            entrada.target.classList.add("fade-in");
+                            entrada.target.classList.add("visible");
 
                             observer.unobserve(
                                 entrada.target
@@ -411,9 +683,7 @@ function configurarAnimaciones() {
     elementos.forEach(
         function (elemento) {
 
-            observer.observe(
-                elemento
-            );
+            observer.observe(elemento);
 
         }
     );
@@ -437,8 +707,10 @@ document.addEventListener(
 
         configurarAnimaciones();
 
+        configurarFormulario();
 
-        // Consultar nuevamente cada 10 segundos
+
+        // CONSULTAR NUEVAMENTE CADA 10 SEGUNDOS
 
         setInterval(
             function () {

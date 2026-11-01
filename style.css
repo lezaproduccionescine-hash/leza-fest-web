@@ -560,3 +560,162 @@ footer {
     }
 
 }
+
+
+/* ========================================
+   LEZA TV - TRANSMISIÓN DEL FESTIVAL
+======================================== */
+
+#transmision {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 45%,
+            rgba(212, 175, 55, 0.10),
+            transparent 65%
+        ),
+        #050505;
+}
+
+#transmision .festival-content {
+    max-width: 1000px;
+}
+
+#transmision .section-title {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#transmision .festival-content > p:not(.section-label) {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.leza-tv-info {
+    position: relative;
+
+    max-width: 780px;
+    width: 100%;
+
+    margin: 55px auto 0;
+    padding: 55px 45px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 25, 25, 0.98),
+            rgba(8, 8, 8, 0.98)
+        );
+
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-top: 3px solid #D4AF37;
+
+    box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(212, 175, 55, 0.05);
+}
+
+.leza-tv-info h3 {
+    color: #D4AF37;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+#broadcast-status {
+    color: #aaaaaa;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+.broadcast-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    margin: 35px 0;
+
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.broadcast-details > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 30px 15px;
+}
+
+.broadcast-details > div + div {
+    border-left: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.broadcast-details span {
+    color: #888888;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.broadcast-details strong {
+    color: #D4AF37;
+
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: bold;
+
+    line-height: 1.3;
+}
+
+.leza-tv-info .main-button {
+    margin-top: 10px;
+    min-width: 220px;
+}
+
+/* ========================================
+   RESPONSIVE - LEZA TV
+======================================== */
+
+@media (max-width: 600px) {
+
+    .leza-tv-info {
+        margin-top: 35px;
+        padding: 35px 20px;
+    }
+
+    .leza-tv-info h3 {
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    #broadcast-status {
+        font-size: 14px;
+    }
+
+    .broadcast-details {
+        grid-template-columns: 1fr;
+    }
+
+    .broadcast-details > div {
+        padding: 25px 10px;
+    }
+
+    .broadcast-details > div + div {
+        border-left: none;
+        border-top: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+}
