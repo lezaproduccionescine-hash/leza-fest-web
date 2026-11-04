@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <title>Votaciones | Leza Fest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="../index.html" class="brand">
+            <img src="../assets/logo.png" alt="Leza Producciones">
+            <span>LEZA FEST</span>
+        </a>
+    </header>
+
+    <main class="main">
+        <section class="voting-intro">
+            <p class="eyebrow">LEZA PRODUCCIONES PRESENTA</p>
+            <h1>VOTACIONES</h1>
+            <div class="gold-line"></div>
+            <p class="description">
+                Descubrí las obras participantes de Leza Fest.
+            </p>
+        </section>
+
+        <section id="votingStatus" class="status-card">
+            <h2>Todavía no se puede votar</h2>
+            <p>Las votaciones aún no están habilitadas.</p>
+        </section>
+
+        <section id="worksSection" class="works-section" hidden>
+            <div id="worksList" class="works-list"></div>
+        </section>
+
+        <section id="emptySection" class="status-card" hidden>
+            <h2>No hay obras disponibles</h2>
+            <p>La lista de votaciones todavía no está disponible.</p>
+        </section>
+
+        <section id="alreadyVoted" class="status-card" hidden>
+            <h2>Voto registrado</h2>
+            <p>Ya registraste tu voto. ¡Gracias por participar!</p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <span>LEZA PRODUCCIONES</span>
+        <p>LEZA FEST ©</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

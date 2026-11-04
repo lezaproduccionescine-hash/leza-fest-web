@@ -1,0 +1,251 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #D4AF37;
+    --gold-light: #F0D77A;
+    --black: #080808;
+    --surface: #141414;
+    --surface-light: #1D1D1D;
+    --text: #FFFFFF;
+    --muted: #A5A5A5;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--black);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    min-height: 85px;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    background: #0D0D0D;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.main {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 75px 25px;
+    flex: 1;
+}
+
+.voting-intro {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+.voting-intro h1 {
+    font-size: clamp(38px, 7vw, 66px);
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.gold-line {
+    width: 75px;
+    height: 3px;
+    background: var(--gold);
+    margin: 24px auto;
+}
+
+.description {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.status-card {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 45px 25px;
+    background: var(--surface);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.status-card h2 {
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 13px;
+}
+
+.status-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.works-section {
+    width: 100%;
+}
+
+.works-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.work-card {
+    padding: 25px;
+    background: var(--surface);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 9px;
+}
+
+.work-card h2 {
+    color: var(--gold-light);
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.work-card p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.work-link {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 13px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+}
+
+.vote-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 5px;
+    background: var(--gold);
+    color: #080808;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.vote-button:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+}
+
+.vote-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.footer {
+    padding: 28px 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    background: #0D0D0D;
+}
+
+.footer span {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.footer p {
+    margin-top: 9px;
+    color: #777;
+    font-size: 11px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .main {
+        padding: 55px 18px;
+    }
+
+    .voting-intro {
+        margin-bottom: 40px;
+    }
+
+    .work-card {
+        padding: 20px;
+    }
+}
+
+/* BOTÓN VER OBRA - LEZA FEST */
+.btn-ver-obra,
+.ver-obra,
+button.ver-obra {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #D4AF37, #F5D76E);
+    color: #111111;
+    border: 1px solid #D4AF37;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-ver-obra:hover,
+.ver-obra:hover,
+button.ver-obra:hover {
+    background: transparent;
+    color: #D4AF37;
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+    transform: translateY(-2px);
+}

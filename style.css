@@ -719,3 +719,28 @@ footer {
     }
 
 }
+
+/* BOTÓN VOTAR OBRA - INICIO */
+.btn-votar-obra {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 28px;
+    background: linear-gradient(135deg, #D4AF37, #F5D76E);
+    color: #111;
+    border: 1px solid #D4AF37;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+}
+
+.btn-votar-obra:hover {
+    background: transparent;
+    color: #D4AF37;
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+}
